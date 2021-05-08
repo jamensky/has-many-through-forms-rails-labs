@@ -1,1 +1,39 @@
 
+Title: <%= @post.title %>
+<br> 
+Cotent: <%= @post.content %>
+<br> 
+
+<% @post.categories.each do |cat| %>
+  categories: <%= cat.name %>
+<% end %>
+
+<% @users = [] %>
+<% @post.comments.each do |comment| %>
+    <%= comment.content %>
+    <% @users << comment.user.username%>
+<% end %>
+
+Users that commented on this post:
+<ul>
+<% @users.uniq.each do |user| %>
+  <li>
+    <%= link_to user, user_path(User.find_by(username: user)) %>
+  </li>
+<% end %> 
+</ul>
+
+
+Create comment:
+<%= form_for @post.comments.build do |c|%>
+  <%= c.text_area :content %>
+  <%= c.collection_select :user %>
+<% end %>
+
+
+
+
+
+
+
+
