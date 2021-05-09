@@ -1,1 +1,6 @@
 
+<%= @user.comments.each do |c| %>
+
+ <%= link_to c.post.title, post_path(c.post)  %>
+
+<% end %>

@@ -13,7 +13,7 @@ Comments and users:
 <ul>
 <% @post.users.distinct.each do |user| %>
   <li>
-    <%= link_to user.username, user_path(user) %> says: <%= user.comment%>
+    <%= link_to user.username, user_path(user) %> says: <%= user.comments.each {|c| c.content}  %>
   </li>
 <% end %>
 </ul>
